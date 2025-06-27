@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.logger.TaskController">
+
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-alignment: center-left;">
+            <TextField fx:id="taskField" promptText="Enter task..." prefWidth="250" maxWidth="300" HBox.hgrow="ALWAYS"/>
+            <DatePicker fx:id="taskDate" prefWidth="120" maxWidth="120"/>
+            <Label text="Time:" style="-fx-padding: 0 0 0 5;"/>
+            <Spinner fx:id="hourSpinner" prefWidth="60" maxWidth="60" style="-fx-font-size: 14;">
+                <tooltip>
+                    <Tooltip text="Hour (1-12)" />
+                </tooltip>
+            </Spinner>
+            <Label text=":" style="-fx-padding: 0 2 0 2;"/>
+            <Spinner fx:id="minuteSpinner" prefWidth="60" maxWidth="60" style="-fx-font-size: 14;">
+                <tooltip>
+                    <Tooltip text="Minute (0-59)" />
+                </tooltip>
+            </Spinner>
+            <ChoiceBox fx:id="amPmChoice" prefWidth="80" maxWidth="80" style="-fx-font-size: 14;">
+                <tooltip>
+                    <Tooltip text="AM/PM" />
+                </tooltip>
+            </ChoiceBox>
+            <Button text="Add Task" onAction="#handleAddTask" style="-fx-padding: 5 15 5 15; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="taskTable" prefHeight="300.0">
+            <columns>
+                <TableColumn fx:id="serialColumn" text="#" prefWidth="50" sortable="false">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="serialNumber" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="descColumn" text="Task" prefWidth="250">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="description" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="date" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-alignment: center-left;">
+            <Label fx:id="taskCountLabel" text="Total Tasks: 0" style="-fx-font-weight: bold; -fx-padding: 5 10 5 10; -fx-background-color: #f0f0f0; -fx-border-radius: 5; -fx-background-radius: 5;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Delete Task" onAction="#handleDeleteTask" style="-fx-padding: 5 15 5 15; -fx-font-weight: bold; -fx-background-color: #ff6b6b; -fx-text-fill: white;"/>
+            <Button text="Export to TXT" onAction="#handleExportTXT" style="-fx-padding: 5 15 5 15; -fx-font-weight: bold; -fx-background-color: #6c5ce7; -fx-text-fill: white;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
